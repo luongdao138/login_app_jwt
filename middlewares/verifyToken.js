@@ -9,7 +9,8 @@ const verifyToken = async (req, res, next) => {
   const token = authorization.replace('Bearer ', '');
 
   try {
-    await jwt.verify(token, process.env.TOKEN_SECRET_KEY);
+    const verified = await jwt.verify(token, process.env.TOKEN_SECRET_KEY);
+    req.user_id = verified._id;
   } catch (error) {
     return res.status(400).json({ success: false, msg: 'token invalid!' });
   }

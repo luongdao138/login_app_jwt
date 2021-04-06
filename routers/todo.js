@@ -5,7 +5,7 @@ const { verifyToken } = require('../middlewares/verifyToken');
 router.use(verifyToken);
 
 router.get('/', (req, res) => {
-  res.send('Hello World!');
+  res.json({ _id: req.user_id });
 });
 
 module.exports = router;
